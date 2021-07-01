@@ -7,6 +7,9 @@ const App = () => {
       <header className="App-header">
         <SpinningLogo />
       </header>
+      <main>
+        <div className="box"></div>        
+      </main>
     </div>
   )
 }
