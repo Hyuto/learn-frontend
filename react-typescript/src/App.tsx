@@ -1,23 +1,36 @@
-import SpinningLogo from './components/SpinningLogo/SpinningLogo';
-import Data from './utils/getData';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
 
-const generate_todos = () => {
-  const data: Promise<Array<Object>> = new Data('https://django-todos-application.herokuapp.com/api/').get();
-  const todos: Array<JSX.Element> = [];
-  
-  data.then(e => {
-    e.forEach(element => {
-      todos.push(<h1>Hallo</h1>)
-    })
-  });
-  
-  return todos;
+import SpinningLogo from './components/SpinningLogo/SpinningLogo';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
+
+interface ToDos{
+  id: number;
+  title: string;
+  description: string;
+  complete: boolean;
+  deadline: string | null;
 }
 
-const App = () => {
-  const todos = generate_todos();
-  console.log(todos);
+const server_data: AxiosInstance = axios.create({
+  baseURL: 'https://django-todos-application.herokuapp.com/api/'
+});
+
+const App: React.FC = () => {
+  const [data, setData] = useState<JSX.Element[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    server_data.get('.').then((response: AxiosResponse<ToDos[]>) => {
+      const todos: JSX.Element[] = [];
+      response.data.forEach(element => {
+        todos.push(<li key={element.id}>{element.title}</li>);
+      })
+
+      setData(todos);
+      setLoading(false);
+    })
+  }, [])
 
   return (
     <div className="App">
@@ -25,8 +38,11 @@ const App = () => {
         <SpinningLogo />
       </header>
       <main>
-        <div className="box">
-                 
+        <div className={`box ${loading}`}>
+          <h2>To Dos</h2>
+          <ul className="todos-container">
+            {data}
+          </ul>
         </div>        
       </main>
     </div>
