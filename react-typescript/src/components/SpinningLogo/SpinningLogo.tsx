@@ -4,7 +4,7 @@ import './SpinningLogo.scss';
 const SpinningLogo = () => {
   return (
     <>
-        <img src={logo} className="spinning-logo" alt="logo" />
+      <img src={logo} className="spinning-logo" alt="logo" />
     </>
   );
 }

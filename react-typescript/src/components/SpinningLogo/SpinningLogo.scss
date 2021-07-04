@@ -1,19 +1,19 @@
 .spinning-logo {
-    max-width: 100px;
-    pointer-events: none;
+  max-width: 100px;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .spinning-logo {
-        animation: spinning-logo-spin infinite 15s linear;
-    }
+  .spinning-logo {
+    animation: spinning-logo-spin infinite 15s linear;
+  }
 }
 
 @keyframes spinning-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
