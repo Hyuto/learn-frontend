@@ -1,7 +1,8 @@
+import React from 'react';
 import logo from './logo.svg';
 import './SpinningLogo.scss';
 
-const SpinningLogo = () => {
+const SpinningLogo: React.FC = () => {
   return (
     <>
       <img src={logo} className="spinning-logo" alt="logo" />
