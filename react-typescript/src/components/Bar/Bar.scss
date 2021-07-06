@@ -1,13 +1,19 @@
 .Bar {
   width: 80%;
-  margin: 3px;
+  margin: 3px 0;
   padding: 5px;
   border: 1px solid black;
   border-radius: 5px;
 
   .head {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
+  }
+
+  .icon {
+    cursor: pointer;
+    margin: 0 5px;
   }
 
   .hidden {

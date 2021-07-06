@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import SpinningLogo from "./components/SpinningLogo/SpinningLogo";
-import axios, { AxiosInstance, AxiosResponse } from "axios";
-import Bar from "./components/Bar/Bar";
-
-const END_POINT: string = process.env.NODE_ENV === "development" ? 'http://127.0.0.1:8000/api/' : "https://django-todos-application.herokuapp.com/api/";
-
-const server_data: AxiosInstance = axios.create({
-  baseURL: END_POINT,
-});
-
+import List from "./components/List/List";
+import { Instance } from "./utils/tools";
 const App: React.FC = () => {
-  const [todo, setTodo] = useState<JSX.Element[] | null>(null);
+  const [todo, setTodo] = useState<JSX.Element | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    server_data.get(".").then((response: AxiosResponse<ToDos[]>) => {
-      const data: JSX.Element[] = response.data.map((element) => {
-        return <Bar key={element.id} data={element} />
-      })
+    Instance.get(".").then((response) => {
+      const data: JSX.Element = <List data={response.data} />;
 
       setTodo(data);
       setLoading(false);
@@ -36,6 +27,8 @@ const App: React.FC = () => {
             <h2>React To Do's App</h2>
           </div>
           <div className={`todos ${loading}`}>
+            <div className="form">
+            </div>
             {todo}
           </div>
         </div>
