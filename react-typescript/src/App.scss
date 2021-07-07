@@ -1,9 +1,4 @@
-.center-vh {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+@use 'utils/styles/tools';
 
 .App {
   display: grid;
@@ -17,6 +12,8 @@
   width: 100%;
   height: 100%;
   background-color: #282c34;
+
+  @include tools.center-vh;
 }
 
 main {
@@ -35,6 +32,22 @@ main {
     .todos {
       width: 100%;
       height: 300px;
+
+      .list-wrapper {
+        height: 200px;
+        max-height: 200px;
+        overflow-y: auto;
+
+        .loading {
+          width: 100%;
+          height: 100%;
+          @include tools.center-vh;
+        }
+
+        .complete {
+          display: none;
+        }
+      }
     }
   }
 }

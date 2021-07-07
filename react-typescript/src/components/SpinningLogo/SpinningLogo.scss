@@ -1,5 +1,7 @@
 .spinning-logo {
   max-width: 100px;
+  cursor: context-menu;
+  user-select: none;
   pointer-events: none;
 }
 

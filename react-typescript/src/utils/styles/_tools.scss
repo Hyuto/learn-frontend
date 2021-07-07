@@ -1,6 +1,6 @@
-.list {
-  width: 100%;
+@mixin center-vh {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }

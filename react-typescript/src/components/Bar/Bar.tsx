@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { FaCheck, FaTimes, FaTrash, FaInfoCircle } from 'react-icons/fa'
-import { toggle } from '../../utils/tools'
-import './Bar.scss'
+import React, { useState } from 'react';
+import { FaCheck, FaTimes, FaTrash, FaInfoCircle } from 'react-icons/fa';
+import { toggle } from '../../utils/tools';
+import './Bar.scss';
 
 const Bar: React.FC<{ data: ToDos, callback: any }> = ({ data, callback }) => {
     const [open, setOpen] = useState<string>('hidden');
