@@ -20,7 +20,7 @@
 
 *Comming Soon*
 
-## Special : [ToDosBackend](./TodosBackend/README.md)
+## Submodule : [ToDosBackend](https://github.com/Hyuto/TodosBackend)
 
 ![Python](https://img.shields.io/badge/Python-14354C?style=plastic&logo=python&logoColor=white) 
 ![Django](https://img.shields.io/badge/Django-092E20?style=plastic&logo=django&logoColor=white) 
