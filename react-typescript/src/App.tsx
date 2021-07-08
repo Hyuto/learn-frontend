@@ -30,6 +30,9 @@ const App: React.FC = () => {
           </div>
           <div className="todos">
             <div className="form">
+              <div className="button">
+                Add To Do
+              </div>
             </div>
             <div className="list-wrapper">
               <div className={loading}>

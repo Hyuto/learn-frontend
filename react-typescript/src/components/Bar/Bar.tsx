@@ -13,24 +13,21 @@ const Bar: React.FC<{ data: ToDos, callback: any }> = ({ data, callback }) => {
                     {data.title}
                 </div>
                 <div className="icons">
+                    <FaInfoCircle className="icon"
+                        onClick={() => setOpen(toggle(open))} />
                     {data.complete ?
                         <FaCheck className="icon" onClick={
                             () => callback(data.id, 'updateStatus')} /> :
                         <FaTimes className="icon" onClick={
                             () => callback(data.id, 'updateStatus')} />}
-                    <FaInfoCircle className="icon"
-                        onClick={() => setOpen(toggle(open))} />
+                    <FaTrash className="icon"
+                        onClick={() => callback(data.id, 'delete')} />
                 </div>
             </div>
             <div className={`desc ${open}`}>
                 <div className="text">
                     {data.description}
                 </div>
-                <div className="change">
-                    <FaTrash className="icon"
-                        onClick={() => callback(data.id, 'delete')} />
-                </div>
-
             </div>
         </div>
     )
