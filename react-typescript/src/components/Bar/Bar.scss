@@ -1,22 +1,66 @@
+@use '../../utils/styles/tools';
+
+.icon {
+  cursor: pointer;
+  margin: 0 5px;
+}
+
 .Bar {
   width: 80%;
   margin: 3px 0;
   padding: 5px;
-  border: 1px solid black;
+  border: 1.5px solid black;
   border-radius: 5px;
 
   .head {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-  }
-
-  .icon {
     cursor: pointer;
-    margin: 0 5px;
+
+    .text {
+      font-size: large;
+    }
   }
 
   .hidden {
     display: none;
+  }
+
+  .show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .info {
+      width: 80%;
+      margin: 10px;
+      border: 1px black solid;
+      border-radius: 5px;
+
+      .sub-info {
+        margin: 2px 5px;
+        font-size: smaller;
+      }
+    }
+
+    .update-btn {
+      background-color: darkgrey;
+      width: 80%;
+      padding: 3px;
+      border-radius: 5px;
+      border: none;
+      color: white;
+      text-align: center;
+    }
+
+    .active {
+      background-color: dodgerblue;
+      cursor: pointer;
+
+      &:hover {
+        background-color: blue;
+      }
+    }
   }
 }

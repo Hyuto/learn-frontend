@@ -4,15 +4,22 @@ import Bar from '../Bar/Bar';
 
 const List: React.FC<{ data: ToDos[] }> = ({ data }) => {
     const [Data, setData] = useState<ToDos[]>(data);
+    const [update, setUpdate] = useState<string[]>(data.map(e => ''));
     const [todos, setTodos] = useState<JSX.Element[] | null>(null);
 
-    const delTodos = useCallback((id: number, action: string) => {
+    const barCalback = useCallback((id: number, action: string) => {
         switch (action) {
             case 'updateStatus':
-                setData(Data.map(e => {
-                    if (e.id === id) {
-                        e.complete = e.complete ? false : true;
-                    }
+                setData(Data.map((e) => {
+                    if (e.id === id)
+                        e.complete = !e.complete;
+                    return e;
+                }));
+
+                setUpdate(update.map((e, index) => {
+                    if (JSON.stringify(data[index]) !==
+                        JSON.stringify(Data[index]))
+                        e = 'active';
                     return e;
                 }));
                 break;
@@ -22,15 +29,16 @@ const List: React.FC<{ data: ToDos[] }> = ({ data }) => {
             default:
                 Error('Unknown action');
         }
-    }, [Data])
+    }, [Data, update, data])
 
     useEffect(() => {
-        const newTest = Data.map((e) => {
-            return <Bar key={e.id} data={e} callback={delTodos} />;
+        const newTest = Data.map((e, index) => {
+            return <Bar key={e.id} data={e} update={update[index]}
+                callback={barCalback} />;
         })
 
         setTodos(newTest);
-    }, [Data, delTodos])
+    }, [Data, update, barCalback])
 
     return (
         <div className="list">

@@ -8,8 +8,3 @@ const END_POINT: string =
 export const Instance: AxiosInstance = axios.create({
   baseURL: END_POINT,
 });
-
-export const toggle = (status: string): string => {
-  status = status === "hidden" ? "show" : "hidden";
-  return status;
-};
