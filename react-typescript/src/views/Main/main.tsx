@@ -4,7 +4,7 @@ import List from "../../components/List/List";
 import Spinner from "../../components/Spinner/Spinner";
 import { Instance } from "../../utils/tools";
 
-const Main: React.FC = () => {
+const Main: React.FC<{ callback: (action: string) => void }> = ({ callback }) => {
     const [todo, setTodo] = useState<JSX.Element | null>(null);
     const [loading, setLoading] = useState<string>('loading');
 
@@ -18,9 +18,9 @@ const Main: React.FC = () => {
     }, []);
 
     return (
-        <div className="todos">
-            <div className="form">
-                <div className="button">
+        <>
+            <div className="btn-wrapper">
+                <div className="add-btn" onClick={() => callback('open')}>
                     Add To Do
                 </div>
             </div>
@@ -30,7 +30,7 @@ const Main: React.FC = () => {
                 </div>
                 {todo}
             </div>
-        </div>
+        </>
     )
 }
 

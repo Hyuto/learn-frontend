@@ -1,0 +1,57 @@
+@use '../../utils/styles/tools';
+
+.new-update {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    width: 80%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .btn-wrapper {
+      margin: 10px;
+
+      .btn {
+        padding: 5px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: medium;
+        cursor: pointer;
+      }
+
+      .submit {
+        color: white;
+        background-color: lightseagreen;
+        opacity: 0.8;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .cancel {
+        color: white;
+        background-color: red;
+
+        opacity: 0.8;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.close {
+  display: none;
+}

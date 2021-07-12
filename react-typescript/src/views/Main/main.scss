@@ -1,46 +1,39 @@
 @use '../../utils/styles/tools';
 
-.todos {
+.btn-wrapper {
   width: 100%;
-  height: 300px;
+  margin: 5px 0 10px 0;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 
-  .form {
-    width: 100%;
-    margin: 0 0 10px 0;
-    display: flex;
-    justify-content: center;
+  .add-btn {
+    width: 80%;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    background-color: yellowgreen;
+    border-radius: 10px;
 
-    .button {
-      width: 80%;
-      padding: 5px;
-      text-align: center;
-      color: white;
-      cursor: pointer;
-      background-color: yellowgreen;
-      border-radius: 10px;
-
-      &:hover {
-        background-color: #282c34;
-      }
+    &:hover {
+      background-color: #282c34;
     }
   }
+}
 
-  .list-wrapper {
-    height: 200px;
-    margin: 5px 0 0 0;
-    max-height: 200px;
-    overflow-y: auto;
+.list-wrapper {
+  height: 200px;
+  margin: 5px 0 0 0;
+  max-height: 200px;
+  overflow-y: auto;
 
-    .loading {
-      width: 100%;
-      height: 100%;
-      @include tools.center-vh;
-    }
+  .loading {
+    width: 100%;
+    height: 100%;
+    @include tools.center-vh;
+  }
 
-    .complete {
-      display: none;
-    }
+  .complete {
+    display: none;
   }
 }
