@@ -7,3 +7,5 @@ interface ToDos {
   complete: boolean;
   deadline: string | null;
 }
+
+declare function Callback(action: string, new_data?: ToDos[] | null): void;

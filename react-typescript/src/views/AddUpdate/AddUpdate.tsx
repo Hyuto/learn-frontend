@@ -5,12 +5,14 @@ import { Instance } from "../../utils/tools";
 
 const status = "Create"
 
-const AddUpdate: React.FC<{ className: string, callback: (action: string) => void }> =
-    ({ className, callback }) => {
+const AddUpdate: React.FC<{ data: ToDos[] | null, className: string, callback: typeof Callback }> =
+    ({ data, className, callback }) => {
         const { register, handleSubmit } = useForm();
-        const onSubmit = async (data: ToDos) => {
-            await Instance.post('.', data).then(res => {
-                console.log(res.data);
+        const onSubmit = async (new_data: ToDos) => {
+            await Instance.post('.', new_data).then(res => {
+                data?.push(res.data);
+                console.log(data);
+                callback('update-data', data);
             })
         };
 

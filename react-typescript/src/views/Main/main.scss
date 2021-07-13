@@ -19,6 +19,15 @@
       background-color: #282c34;
     }
   }
+
+  .nonactive {
+    background-color: gray;
+    cursor: progress;
+
+    &:hover {
+      background-color: gray;
+    }
+  }
 }
 
 .list-wrapper {
