@@ -8,4 +8,4 @@ interface ToDos {
   deadline: string | null;
 }
 
-declare function Callback(action: string, new_data?: ToDos[] | null): void;
+declare function Callback(action: string, id?: number): void;

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { FaCheck, FaTimes, FaTrash } from 'react-icons/fa';
 import { Instance } from '../../utils/tools';
+import { ContextData, UpdateData, DeleteData } from '../../utils/DataHandler';
 import './Bar.scss';
 
 const toggle = (status: string): string => {
@@ -8,16 +9,15 @@ const toggle = (status: string): string => {
     return status;
 };
 
-const Bar: React.FC<{ data: ToDos, callback: any }> = ({ data, callback }) => {
-    const [open, setOpen] = useState<string>('hidden');
-    const [status, setStatus] = useState<JSX.Element | null>(null);
+const Bar: React.FC<{ data: ToDos, callback: typeof Callback }> =
+    ({ data, callback }) => {
+        const { UpdateData, DeleteData } = useContext(ContextData);
+        const [open, setOpen] = useState<string>('hidden');
 
-    useEffect(() => {
         const Handler = async () => {
-            const new_data = Object.assign({}, data)
-            new_data.complete = !new_data.complete;
-            await Instance.put(`${new_data.id}/`, new_data).then((response) => {
-                callback(data.id, 'update');
+            data.complete = !data.complete;
+            await Instance.put(`${data.id}/`, data).then((response) => {
+                (UpdateData as UpdateData)(data.id, response.data);
             })
         }
 
@@ -35,46 +35,48 @@ const Bar: React.FC<{ data: ToDos, callback: any }> = ({ data, callback }) => {
                     }} />
         }
 
-        setStatus(getStatus(data));
-    }, [data, callback])
+        const status = getStatus(data);
 
-    return (
-        <div key={data.id} id={`todos-${data.id}`} className="Bar">
-            <div className="head" onClick={() => setOpen(toggle(open))}>
-                <div className="text">
-                    {data.title}
+        return (
+            <div key={data.id} id={`todos-${data.id}`} className="Bar">
+                <div className="head" onClick={() => setOpen(toggle(open))}>
+                    <div className="text">
+                        {data.title}
+                    </div>
+                    <div className="icons">
+                        {status}
+                        <FaTrash className="icon" color="#e81d17"
+                            onClick={async (e) => {
+                                e.stopPropagation();
+                                Instance.delete(`${data.id}/`).then(() => {
+                                    (DeleteData as DeleteData)(data.id);
+                                });
+                            }} />
+                    </div>
                 </div>
-                <div className="icons">
-                    {status}
-                    <FaTrash className="icon" color="#e81d17"
-                        onClick={async (e) => {
-                            e.stopPropagation();
-                            Instance.delete(`${data.id}/`).then(() => {
-                                callback(data.id, 'delete');
-                            });
-                        }} />
+                <div className={`desc ${open}`}>
+                    <div className="info">
+                        <p className="sub-info">
+                            <strong>Description</strong> : {data.description}
+                        </p>
+                        <p className="sub-info">
+                            <strong>Deadline</strong> : {data.deadline ?
+                                data.deadline : 'Not Listed'}
+                        </p>
+                        <p className="sub-info">
+                            <strong>Status</strong> : {data.complete ?
+                                'Finished' : data.complete === false ?
+                                    'Not Finished' : 'Unknown'}
+                        </p>
+                    </div>
+                    <div className="update-btn" onClick={() => {
+                        callback('update', data.id);
+                    }}>
+                        Update Data
+                    </div>
                 </div>
             </div>
-            <div className={`desc ${open}`}>
-                <div className="info">
-                    <p className="sub-info">
-                        <strong>Description</strong> : {data.description}
-                    </p>
-                    <p className="sub-info">
-                        <strong>Deadline</strong> : {data.deadline ?
-                            data.deadline : 'Not Listed'}
-                    </p>
-                    <p className="sub-info">
-                        <strong>Status</strong> : {data.complete ? 'Finished' :
-                            data.complete === false ? 'Not Finished' : 'Unknown'}
-                    </p>
-                </div>
-                <div className="update-btn">
-                    Update Data
-                </div>
-            </div>
-        </div>
-    )
-}
+        )
+    }
 
 export default Bar;
