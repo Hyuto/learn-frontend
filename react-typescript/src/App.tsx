@@ -1,36 +1,38 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import "./App.scss";
 import Main from "./views/Main/main";
 import AddUpdate from "./views/AddUpdate/AddUpdate";
 import SpinningLogo from "./components/SpinningLogo/SpinningLogo";
-import { Instance } from "./utils/tools";
+import DataHandler from "./utils/DataHandler";
+
+interface WindowType {
+  type: string;
+  data?: ToDos;
+}
 
 const App: React.FC = () => {
-  const [data, setData] = useState<ToDos[] | null>(null);
   const [auWindow, setAUWindow] = useState<string>('close');
+  const [typeWindow, settypeWindow] = useState<WindowType>({ type: 'Create' });
 
-  const windowHandler = useCallback((action, new_data = null) => {
+  console.log('App.tsx');
+
+  const windowHandler = useCallback((action, data?) => {
     switch (action) {
-      case 'open':
+      case 'add':
+        settypeWindow({ type: 'Create' });
+        setAUWindow('open');
+        break;
+      case 'update':
+        settypeWindow({ type: 'Update', data: data });
         setAUWindow('open');
         break;
       case 'close':
         setAUWindow('close');
         break;
-      case 'update-data':
-        setData(new_data);
-        break;
       default:
         Error('Undefined action!');
         break;
     }
-  }, [])
-
-  useEffect(() => {
-    console.log("App.tsx");
-    Instance.get('.').then(response => {
-      setData(response.data);
-    })
   }, [])
 
   return (
@@ -44,9 +46,11 @@ const App: React.FC = () => {
             <h2>React To Do's App</h2>
           </div>
           <div className="todos">
-            <Main data={data} callback={windowHandler} />
-            <AddUpdate data={data} className={auWindow}
-              callback={windowHandler} />
+            <DataHandler>
+              <Main callback={windowHandler} />
+              <AddUpdate className={auWindow} callback={windowHandler}
+                typeform={typeWindow} />
+            </DataHandler>
           </div>
         </div>
       </main>
