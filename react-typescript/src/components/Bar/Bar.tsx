@@ -70,7 +70,7 @@ const Bar: React.FC<{ data: ToDos, callback: typeof Callback }> =
                         </p>
                     </div>
                     <div className="update-btn" onClick={() => {
-                        callback('update', data.id);
+                        callback('update', data);
                     }}>
                         Update Data
                     </div>

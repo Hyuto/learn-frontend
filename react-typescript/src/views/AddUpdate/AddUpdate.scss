@@ -56,10 +56,18 @@
       height: 100%;
       width: 100%;
       background-color: white;
-      display: flex;
-      flex-direction: column;
+      cursor: pointer;
 
       @include tools.center-vh;
+
+      .icons {
+        // Make margin
+      }
+
+      .message {
+        // Make margin
+        font-size: large;
+      }
     }
 
     .close {
@@ -70,8 +78,4 @@
 
 .close {
   display: none;
-}
-
-.open {
-  display: block;
 }
