@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Instance } from './tools';
+import { APIHandler } from "./tools";
 
 export type SetData = React.Dispatch<React.SetStateAction<ToDos[] | null>>;
 export type UpdateData = (id: number, newData: ToDos) => void;
@@ -30,7 +30,7 @@ const DataHandler: React.FC = ({ children }) => {
     }, [data])
 
     useEffect(() => {
-        Instance.get('.').then(response => {
+        APIHandler.Instance.get('.').then(response => {
             setData(response.data);
         })
     }, [])

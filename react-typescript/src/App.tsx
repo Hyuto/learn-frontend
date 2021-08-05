@@ -45,13 +45,13 @@ const App: React.FC = () => {
           <div className="title">
             <h2>React To Do's App</h2>
           </div>
-          <div className="todos">
-            <DataHandler>
+          <DataHandler>
+            <div className="todos">
               <Main callback={windowHandler} />
               <AddUpdate className={auWindow} callback={windowHandler}
                 typeform={typeWindow} />
-            </DataHandler>
-          </div>
+            </div>
+          </DataHandler>
         </div>
       </main>
     </div >
