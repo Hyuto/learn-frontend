@@ -1,3 +1,6 @@
 [submodule "TodosBackend"]
 	path = TodosBackend
 	url = https://github.com/Hyuto/TodosBackend.git
+[submodule "Hyuto.github.io"]
+	path = Hyuto.github.io
+	url = https://github.com/Hyuto/Hyuto.github.io.git
