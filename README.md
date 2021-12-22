@@ -4,7 +4,6 @@
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=plastic&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=plastic&logo=react&logoColor=61DAFB)
 ![Gatsby](https://img.shields.io/badge/Gatsby-430098?style=plastic&logo=gatsby)
-![Vue](https://img.shields.io/badge/Vue-35495E?style=plastic&logo=vue.js&logoColor=4FC08D)
 
 My frontend projects
 
